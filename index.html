@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#7d1828"><title>A Little Birthday Surprise ♡</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+:root{--wine:#761b2b;--red:#b83245;--rose:#e87983;--blush:#f8d9d9;--cream:#fff8f5;--ink:#633b42}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:'DM Sans',sans-serif;color:var(--ink);background:radial-gradient(circle at 15% 10%,#fff 0,transparent 30%),linear-gradient(145deg,#fff7f3,#f8dfe0 55%,#efd0d3)}
+#hearts{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.float{position:absolute;bottom:-30px;color:#bd4356;opacity:.18;animation:rise linear infinite}
+@keyframes rise{to{transform:translateY(-115vh) rotate(360deg);opacity:0}}
+.app{height:100dvh;position:relative;z-index:1;display:flex;flex-direction:column;padding:18px 16px 16px;max-width:760px;margin:auto}
+.top{display:flex;align-items:center;justify-content:space-between;padding:5px 3px 16px;gap:12px}
+.brand{font-size:10px;letter-spacing:2.4px;text-transform:uppercase;color:#9e5964;font-weight:700}
+.counter{font-size:11px;color:#a66b72;background:#ffffffa6;border:1px solid #fff;padding:8px 12px;border-radius:30px}
+.progress{height:4px;background:#ffffffa6;border-radius:9px;overflow:hidden;margin:0 2px 14px}
+.bar{height:100%;width:20%;background:linear-gradient(90deg,#b83245,#ec8b91);border-radius:9px;transition:width .35s}
+.deck{position:relative;flex:1;min-height:0;overflow:hidden;border-radius:30px;background:#ffffffa8;border:1px solid #fff;box-shadow:0 22px 70px #7423311c;backdrop-filter:blur(14px)}
+.pages{height:100%;display:flex;transition:transform .55s cubic-bezier(.22,.8,.25,1);touch-action:pan-y}
+.page{flex:0 0 100%;height:100%;overflow-y:auto;display:flex;align-items:center;justify-content:center;text-align:center;padding:clamp(22px,6vw,48px);scrollbar-width:none}
+.page::-webkit-scrollbar{display:none}.content{width:100%;max-width:570px}
+.tag{display:inline-block;padding:8px 13px;border:1px solid #f0c9cc;background:#fff9f7;border-radius:99px;color:#a44b59;font-size:10px;letter-spacing:2px;text-transform:uppercase}
+h1,h2{font-family:'Playfair Display',serif;color:var(--wine);font-weight:600}
+h1{font-size:clamp(43px,9vw,76px);line-height:1.03;margin:22px 0 14px}h1 em{display:block;color:#c54c5c;font-weight:500}
+h2{font-size:clamp(31px,6vw,46px);margin:15px 0 20px}
+p{font-size:14px;line-height:1.9;color:#805d62;margin:0 auto;max-width:490px}
+.emoji{font-size:clamp(60px,13vw,92px);margin:18px 0;filter:drop-shadow(0 12px 13px #9b344329);animation:bob 3s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-8px)}}
+.small{font-size:11px;color:#ad7b80;margin-top:16px}
+.btn{border:0;background:linear-gradient(135deg,#d85c6b,#922337);color:#fff;padding:14px 22px;border-radius:99px;font:600 13px 'DM Sans';box-shadow:0 10px 25px #9f344333;cursor:pointer;transition:.2s;margin-top:24px}
+.btn:hover{transform:translateY(-2px);box-shadow:0 14px 28px #9f344355}.btn:active{transform:scale(.97)}
+.letter{text-align:left;white-space:pre-line;font-size:13px;line-height:1.9;color:#79565b;max-width:540px;margin:auto}
+.signature{font:italic 21px 'Playfair Display',serif;color:#b34a5b;text-align:right;margin-top:15px}
+.flower{font-size:32px;letter-spacing:9px;margin:10px}
+.gift-wrap{position:relative;width:190px;height:180px;margin:28px auto 10px;cursor:pointer;outline:none}
+.gift{position:absolute;left:24px;bottom:8px;width:142px;height:112px;background:linear-gradient(135deg,#c93e50,#8e1e32);border-radius:10px 10px 17px 17px;box-shadow:0 17px 24px #8e1e3233;transition:.45s}
+.gift:before{content:"";position:absolute;left:59px;top:0;width:25px;height:100%;background:linear-gradient(90deg,#f7c5a8,#fff0d9,#eaa88e)}
+.lid{position:absolute;left:15px;top:48px;width:160px;height:34px;border-radius:9px;background:linear-gradient(135deg,#e96b77,#a62b40);box-shadow:0 7px 12px #8e1e3228;z-index:2;transition:.55s}
+.lid:before{content:"";position:absolute;left:67px;top:0;width:25px;height:100%;background:#ffe3c8}
+.bow{position:absolute;left:72px;top:15px;width:48px;height:36px;z-index:3}
+.bow:before,.bow:after{content:"";position:absolute;width:29px;height:24px;border:8px solid #f8d2b5;border-radius:80% 80% 20% 80%;transform:rotate(25deg)}
+.bow:after{left:18px;transform:scaleX(-1) rotate(25deg)}
+.gift-wrap.open .lid{transform:translate(-17px,-52px) rotate(-18deg)}
+.gift-wrap.open .bow{transform:translate(-15px,-48px) rotate(-18deg);transition:.55s}
+.gift-wrap.open .gift{transform:translateY(8px)}
+#giftMessage{display:none;margin:18px auto 0;padding:17px 18px;background:#fff3f0;border:1px solid #f4d4d1;border-radius:18px;max-width:420px;color:#a04452;font-size:13px;line-height:1.8;animation:pop .4s ease}
+#giftMessage.show{display:block}@keyframes pop{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:15px 2px 0;gap:12px}
+.navbtn{border:1px solid #e9c5c8;background:#ffffffb8;color:#8e3d4a;border-radius:99px;padding:11px 17px;font:600 12px 'DM Sans';cursor:pointer}
+.navbtn:disabled{opacity:.35;cursor:default}.dots{display:flex;gap:6px;justify-content:center;flex:1}
+.dot{width:6px;height:6px;border-radius:50%;background:#d9a6aa;transition:.25s}.dot.active{width:19px;border-radius:9px;background:#a52f42}
+.footer{text-align:center;font-size:10px;color:#ae7c82;padding-top:10px;letter-spacing:1px}
+.confetti{position:fixed;top:-25px;z-index:8;pointer-events:none;animation:fall 3.5s linear forwards}@keyframes fall{to{transform:translateY(110vh) rotate(700deg);opacity:0}}
+@media(max-height:690px){.app{padding-top:10px;padding-bottom:8px}.top{padding-bottom:9px}.progress{margin-bottom:8px}.nav{padding-top:9px}.page{padding:18px}.emoji{margin:8px}h1{margin:14px 0 10px}.gift-wrap{transform:scale(.82);margin:5px auto -8px}}
+</style></head>
+<body>
+<div id="hearts"></div>
+<div class="app">
+ <header class="top"><div class="brand">♡ made with love</div><div class="counter" id="counter">01 / 05</div></header>
+ <div class="progress"><div class="bar" id="bar"></div></div>
+ <div class="deck" id="deck"><div class="pages" id="pages">
+  <section class="page"><div class="content">
+   <span class="tag">a little surprise for you</span>
+   <div class="emoji">🎂</div>
+   <h1>Happy Birthday,<em>Mancii!</em></h1>
+   <p>hari ini bukan hari biasa, karena seseorang yang spesial sedang bertambah usia. aku punya sedikit sesuatu buat kamu... ♡</p>
+   <button class="btn" onclick="go(1)">Open your surprise ♡</button>
+   <div class="small">geser ke kiri atau tekan tombol untuk lanjut</div>
+  </div></section>
+  <section class="page"><div class="content">
+   <span class="tag">page two · birthday wishes</span><div class="emoji">🌹</div>
+   <h2>Today is all about you</h2>
+   <p>selamat bertambah usia yaaa! semoga di umur kamu yang sekarang ini bakal ada banyak hal baik yang datang ke hidup kamu. semoga selalu dikasih kesehatan, panjang umur, rezeki yang lancar, dan semua hal yang lagi kamu usahain sekarang bisa tercapai satu per satu.</p>
+   <div class="flower">♡ ✿ ♡</div><p>semoga apa pun yang kamu semogakan bisa jadi kenyataan, bahkan hal-hal kecil yang mungkin selama ini cuma kamu simpan sendiri dalam hati.</p>
+  </div></section>
+  <section class="page"><div class="content">
+   <span class="tag">page three · a little reminder</span><div class="emoji">💌</div>
+   <h2>Please remember this</h2>
+   <p>makasih ya udah bertahan sampai sejauh ini, udah ngelewatin banyak hal, baik yang bikin kamu bahagia maupun hal-hal yang mungkin bikin kamu capek.</p>
+   <p style="margin-top:15px">aku harap ke depannya kamu bisa lebih banyak ngerasain bahagia daripada sedihnya. jangan terlalu keras sama diri sendiri, jangan lupa istirahat kalau capek, dan jangan pernah ngerasa kalau kamu harus selalu kuat dalam segala keadaan.</p>
+  </div></section>
+  <section class="page"><div class="content">
+   <span class="tag">page four · from my heart</span><div class="emoji">🫶🏻</div>
+   <h2>You deserve the best</h2>
+   <p>semoga kamu selalu dikelilingi orang-orang yang tulus, orang-orang yang bisa menghargai keberadaan kamu, dan orang-orang yang bikin kamu ngerasa disayang. jangan pernah kehilangan diri kamu sendiri cuma karena keadaan yang kadang nggak sesuai sama apa yang kamu harapkan.</p>
+   <p style="margin-top:15px">sekali lagi, happy birthday yaaa! semoga tahun ini jadi awal dari banyak cerita indah, pengalaman baru, dan kebahagiaan yang nggak ada habisnya.</p>
+   <div class="signature">with lots of love ♡</div>
+  </div></section>
+  <section class="page"><div class="content">
+   <span class="tag">the last surprise · just for you</span>
+   <h2>One last little gift 🎀</h2>
+   <p>ada hadiah kecil yang nunggu kamu. coba buka kadonya yaaa!</p>
+   <div class="gift-wrap" id="gift" role="button" tabindex="0" aria-label="Buka kado" onclick="openGift()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGift()}">
+    <div class="lid"></div><div class="bow"></div><div class="gift"></div>
+   </div>
+   <div class="small">tap kadonya untuk membuka ♡</div>
+   <div id="giftMessage">🎉 SURPRIIIISE!! 💗<br>hadiah paling spesial hari ini adalah doa-doa baik buat kamu. semoga kamu selalu bahagia, disayang dengan tulus, dan semua impian kamu satu per satu jadi nyata.<br><b>you are precious. never forget that! ♡</b></div>
+  </div></section>
+ </div></div>
+ <nav class="nav"><button class="navbtn" id="prev" onclick="go(index-1)" disabled>← Back</button><div class="dots" id="dots"></div><button class="navbtn" id="next" onclick="go(index+1)">Next →</button></nav>
+ <div class="footer">MADE ESPECIALLY FOR YOU · ♡</div>
+</div>
+<script>
+const pages=document.getElementById('pages'),count=5;let index=0,startX=0,startY=0;
+const dots=document.getElementById('dots');
+for(let i=0;i<count;i++){let d=document.createElement('span');d.className='dot'+(i===0?' active':'');dots.appendChild(d)}
+function go(n){index=Math.max(0,Math.min(count-1,n));pages.style.transform=`translateX(-${index*100}%)`;document.getElementById('counter').textContent=String(index+1).padStart(2,'0')+' / 05';document.getElementById('bar').style.width=((index+1)/count*100)+'%';document.getElementById('prev').disabled=index===0;document.getElementById('next').disabled=index===count-1;[...dots.children].forEach((d,i)=>d.classList.toggle('active',i===index))}
+const deck=document.getElementById('deck');
+deck.addEventListener('touchstart',e=>{startX=e.touches[0].clientX;startY=e.touches[0].clientY},{passive:true});
+deck.addEventListener('touchend',e=>{let dx=e.changedTouches[0].clientX-startX,dy=e.changedTouches[0].clientY-startY;if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.25)go(index+(dx<0?1:-1))},{passive:true});
+let down=false;deck.addEventListener('pointerdown',e=>{if(e.pointerType==='mouse'){down=true;startX=e.clientX;startY=e.clientY}});deck.addEventListener('pointerup',e=>{if(!down)return;down=false;let dx=e.clientX-startX,dy=e.clientY-startY;if(Math.abs(dx)>75&&Math.abs(dx)>Math.abs(dy)*1.3)go(index+(dx<0?1:-1))});
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')go(index+1);if(e.key==='ArrowLeft')go(index-1)});
+function openGift(){let g=document.getElementById('gift');if(g.classList.contains('open'))return;g.classList.add('open');document.getElementById('giftMessage').classList.add('show');for(let i=0;i<36;i++){let c=document.createElement('span');c.className='confetti';c.textContent=['💗','🌹','✨','💕','🎀','🌸'][Math.floor(Math.random()*6)];c.style.left=Math.random()*100+'vw';c.style.animationDelay=Math.random()*.8+'s';c.style.fontSize=(14+Math.random()*18)+'px';document.body.appendChild(c);setTimeout(()=>c.remove(),4500)}}
+const hearts=document.getElementById('hearts');for(let i=0;i<19;i++){let e=document.createElement('span');e.className='float';e.textContent=['♡','♥','✧','✿'][i%4];e.style.left=Math.random()*100+'%';e.style.animationDuration=(10+Math.random()*13)+'s';e.style.animationDelay=(-Math.random()*20)+'s';e.style.fontSize=(12+Math.random()*18)+'px';hearts.appendChild(e)}
+</script></body></html>
